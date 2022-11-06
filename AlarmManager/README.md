@@ -1,2 +1,1 @@
-# android-training
-Android training
+AlarmManager and BroadcastReceiver
