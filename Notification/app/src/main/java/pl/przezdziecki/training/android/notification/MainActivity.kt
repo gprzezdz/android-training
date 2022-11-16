@@ -14,19 +14,18 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat.getSystemService
 import pl.przezdziecki.training.android.notification.databinding.ActivityMainBinding
 
-private var TAG: String = "MainActivity"
+private val TAG: String = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
-    val CHANNEL_ID = "channelID"
-    val CHANNEL_NAME = "channelName"
-    val NOTIFICATION_ID = 0
+    private val CHANNEL_ID = "AndroidTestChannelID"
+    private val CHANNEL_NAME = "AndroidTestChannelName"
+    var notificationCount = 0
     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         notificationChannelCreate()
         val intent = Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -38,19 +37,17 @@ class MainActivity : AppCompatActivity() {
             .setContentTitle("My notification")
             .setContentText("Hello World!")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            // Set the intent that will fire when the user taps the notification
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
         val notificationManager = NotificationManagerCompat.from(this)
         binding.btnNotificationShow.setOnClickListener {
             Log.d(TAG, "btnNotificationShow click")
-            notificationManager.notify(NOTIFICATION_ID, builder.build())
+            notificationManager.notify(notificationCount++, builder.build())
         }
     }
 
     private fun notificationChannelCreate() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance).apply {
                 description = "Training"
