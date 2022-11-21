@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="pl.przezdziecki.training.android.notification">
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
