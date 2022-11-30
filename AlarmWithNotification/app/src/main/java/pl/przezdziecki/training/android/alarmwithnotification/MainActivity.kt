@@ -3,6 +3,7 @@ package pl.przezdziecki.training.android.alarmwithnotification
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Intent
+import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -31,7 +32,8 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "Set alarm")
         val iseconds=binding.edtSeconds.text.toString().toInt()
         val runTime= System.currentTimeMillis()+(iseconds*1000)
-        val intent=Intent(this,AlarmReceiver::class.java)
+        val intent=Intent(this, AlarmReceiver::class.java)
+        intent.putExtra("alarm_title",binding.edtTitle.text.toString())
         val pendingIntent=PendingIntent.getBroadcast(this,alarmId++,intent, PendingIntent.FLAG_IMMUTABLE)
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,runTime,pendingIntent)
         Toast.makeText(this, "Alarm set", Toast.LENGTH_LONG).show()

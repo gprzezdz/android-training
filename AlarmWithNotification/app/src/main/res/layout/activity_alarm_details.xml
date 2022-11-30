@@ -6,15 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".AlarmDetails">
 
-    <Button
-        android:id="@+id/btn_sleep"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/edt_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sleep"
+        android:hint="Alarm title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        android:inputType="textAutoComplete"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_dismiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dismiss"
+        app:layout_constraintEnd_toStartOf="@+id/btn_snooze"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edt_title" />
+
+    <Button
+        android:id="@+id/btn_snooze"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Snooze"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_dismiss"
+        app:layout_constraintTop_toBottomOf="@id/edt_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
