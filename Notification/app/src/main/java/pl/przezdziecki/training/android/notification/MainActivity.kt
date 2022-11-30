@@ -91,12 +91,6 @@ class MainActivity : AppCompatActivity() {
         val showIntent = Intent("show")
         val showPendingIntent = PendingIntent.getBroadcast(this, 0, showIntent,  PendingIntent.FLAG_IMMUTABLE)
 
-
-        /*val intent = Intent(this, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
-        val pendingIntent: PendingIntent =
-            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)*/
         return NotificationCompat.Builder(this, EXPANDABLE_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_baseline_info_24)
             .setContentTitle("expandable notification")
